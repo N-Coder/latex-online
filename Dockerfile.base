@@ -1,0 +1,10 @@
+# podman build -t ncoder/ipe-web-latex-online-base:latest -f Dockerfile.base .
+# podman run -d -p 2700:2700 --rm --name latex-online --volume $(pwd):/var/www/:ro,z --volume $(pwd)/../ipe-web/download/ipe:/var/www/public:ro,z ncoder/ipe-web-latex-online-base:latest /var/www/util/docker-entrypoint.sh
+
+FROM texlive/texlive:latest
+RUN apt-get update && apt-get install -y git-core nodejs npm && \
+    rm -rf /var/lib/apt/lists/* && npm install -g forever 
+
+WORKDIR /var/www
+EXPOSE 2700
+CMD ["/var/www/util/docker-entrypoint.sh"]

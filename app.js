@@ -49,6 +49,11 @@ var compression = require('compression');
 
 var app = express();
 app.use(compression());
+app.use(function(req, res, next) {
+    res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
+    res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
+    next();
+});
 app.use(express.static(__dirname + '/public'));
 
 function sendError(res, userError) {
