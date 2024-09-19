@@ -6,13 +6,17 @@ FROM ncoder/ipe-web-latex-online-base:latest
 
 COPY ./lib /var/www/lib
 COPY ./packages /var/www/packages
-COPY ./public /var/www/public
+COPY ./latexrun /var/www/latexrun
+COPY ./shells /var/www/shells
+COPY ./util/docker-entrypoint.sh /var/www
 COPY ./app.js /var/www/
 COPY ./package-lock.json /var/www/
 COPY ./package.json /var/www/
-COPY ./util/docker-entrypoint.sh /var/www
-RUN npm install .
 
 WORKDIR /var/www
+RUN npm install .
+
+COPY ./public /var/www/public
+
 EXPOSE 2700
 CMD ["/var/www/docker-entrypoint.sh"]

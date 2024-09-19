@@ -62,7 +62,7 @@ if  [[ ($1 == '-h') || ($1 == '--help') ]]; then
     exit 1;
 fi
 
-host="https://texlive2020.latexonline.cc"
+host="https://ipe.n-coder.de"
 command="pdflatex"
 GIT_TRACKED=false
 while getopts "fd:c:go:" flag
